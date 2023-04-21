@@ -7,6 +7,9 @@ package Modelos;
 
 //import com.sun.jdi.connect.spi.Connection;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +25,10 @@ public class PersonaModel {
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.telefono = telefono;
+    }
+
+    public PersonaModel() {
+
     }
 
     public String getApellidos() {
@@ -48,13 +55,16 @@ public class PersonaModel {
         this.telefono = telefono;
     }
     
-    public void GuardarPerona(){
-        /*try{
+    public void GuardarPersona(){
+        try{
             Conexion nuevaConexion = new Conexion();
             this.myConexion = nuevaConexion.Conectar(nombre, nombre);
             Statement sentencia = myConexion.createStatement();
-            sentencia.execute("Insert into Persona values()");
-        }*/
+            sentencia.execute("Insert into Persona values('"+this.getApellidos()+"','"+this.getNombre()+"','"+this.getTelefono()+"')");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar el registro tio "+e.getMessage());
+        }
+        
     }
     
 }

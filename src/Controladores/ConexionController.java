@@ -6,10 +6,13 @@
 package Controladores;
 
 import Modelos.Conexion;
+import Modelos.PersonaModel;
 import Vistas.frmLogin;
+import Vistas.frmPersonas;
 import Vistas.frmPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,18 +21,23 @@ import java.awt.event.ActionListener;
 public class ConexionController implements ActionListener{
     frmLogin VistaLogin;
     frmPrincipal VistaPrincipal;
+    frmPersonas VistaPersonas;
     Conexion ModeloConexion;
+    PersonaModel ModeloPersona;
 
-    public ConexionController(frmLogin VistaLogin, frmPrincipal VistaPrincipal, Conexion ModeloConexion) {
+    public ConexionController(frmLogin VistaLogin, frmPrincipal VistaPrincipal,frmPersonas VistaPersonas, Conexion ModeloConexion, PersonaModel ModeloPer) {
         this.VistaLogin = VistaLogin;
         this.VistaPrincipal = VistaPrincipal;
+        this.VistaPersonas = VistaPersonas;
         this.ModeloConexion = ModeloConexion;
+        this.ModeloPersona = ModeloPer;
         
         //this.VistaPrincipal.setExtendedState(frmPrincipal.MAXIMIZED_BOTH);
         this.VistaPrincipal.setVisible(true);
         
         this.VistaLogin.btnAceptar.addActionListener(this);
         this.VistaPrincipal.btnConectar.addActionListener(this);
+        //this.VistaPersonas.btnGuardar.addActionListener(this);
         
         
     }
@@ -46,6 +54,23 @@ public class ConexionController implements ActionListener{
         if(e.getSource()==this.VistaLogin.btnAceptar){
             this.ModeloConexion.Conectar(this.VistaLogin.txtUsuario.getText(), this.VistaLogin.txtContra.getText());
             
+            if(ModeloConexion!=null){
+                this.VistaLogin.dispose();
+                this.VistaPersonas.btnGuardar.addActionListener(this);
+                this.VistaPersonas.setVisible(true);
+                this.VistaPersonas.setLocationRelativeTo(null);
+            }
         }
+        
+        if(e.getSource()==this.VistaPersonas.btnGuardar){
+            this.ModeloPersona.GuardarPersona(this.VistaPersonas.txtApellidos.getText(), 
+                                             this.VistaPersonas.txtNombre.getText(),
+                                             this.VistaPersonas.txtTelefono.getText());
+        }
+        
+        /*if(e.getSource()==this.VistaPrincipal.btnAgregar){
+            this.VistaPersonas.setVisible(true);
+            this.VistaPersonas.setLocationRelativeTo(null);
+        }*/
     }
 }
