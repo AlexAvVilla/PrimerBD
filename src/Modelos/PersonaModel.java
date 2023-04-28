@@ -55,7 +55,7 @@ public class PersonaModel {
         this.telefono = telefono;
     }
     
-    public void GuardarPersona(){
+    public void GuardarPersona(String apellido, String nombre, int telefono){
         try{
             Conexion nuevaConexion = new Conexion();
             this.myConexion = nuevaConexion.Conectar(nombre, nombre);

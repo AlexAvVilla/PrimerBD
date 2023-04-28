@@ -65,7 +65,7 @@ public class ConexionController implements ActionListener{
         if(e.getSource()==this.VistaPersonas.btnGuardar){
             this.ModeloPersona.GuardarPersona(this.VistaPersonas.txtApellidos.getText(), 
                                              this.VistaPersonas.txtNombre.getText(),
-                                             this.VistaPersonas.txtTelefono.getText());
+                                             Integer.parseInt(this.VistaPersonas.txtTelefono.getText()));
         }
         
         /*if(e.getSource()==this.VistaPrincipal.btnAgregar){

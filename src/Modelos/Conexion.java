@@ -22,9 +22,9 @@ public class Conexion {
         {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             
-            String servidor = "168.234.74.80";
+            String servidor = "localhost";
             String numero_puerto = "1521";
-            String sid = "umg";
+            String sid = "xe";
             String url = "jdbc:oracle:thin:@"+servidor+":"+numero_puerto+":"+sid;
             
             
